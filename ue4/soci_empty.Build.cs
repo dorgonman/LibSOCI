@@ -35,8 +35,10 @@ using System.IO;
 public class soci_empty : ModuleRules
 {
 
-    public soci_empty(TargetInfo Target)
+   public soci_empty(ReadOnlyTargetRules Target)
+        : base(Target)
     {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
         Type = ModuleType.External;
         checkExternalLibPath();
 
@@ -66,8 +68,7 @@ public class soci_empty : ModuleRules
 
         // Enable C++ Exceptions for this module
         bEnableExceptions = true;
-        // eventually needed as well
-        UEBuildConfiguration.bForceEnableExceptions = true;
+        
 
     }
 
@@ -81,7 +82,7 @@ public class soci_empty : ModuleRules
 
 
 
-    private bool AddStaticLibrary(TargetInfo Target)
+    private bool AddStaticLibrary(ReadOnlyTargetRules Target)
     {
         bool bSuccess = false;
 
@@ -101,6 +102,13 @@ public class soci_empty : ModuleRules
                 string libFullName = libNamePrefix + libName + "_" + libVersion + libNameSuffix;
                 libraryTargetFilePath = Path.Combine(libraryPath, libFullName);
             }
+
+            if (WindowsPlatform.Compiler == WindowsCompiler.VisualStudio2017)
+            {
+                libraryPath = getLibraryPath("win64", "vs2017");
+                string libFullName = libNamePrefix + libName + "_" + libVersion + libNameSuffix;
+                libraryTargetFilePath = Path.Combine(libraryPath, libFullName);
+            }
         }
         else if (Target.Platform == UnrealTargetPlatform.Win32)
         {
@@ -112,6 +120,14 @@ public class soci_empty : ModuleRules
                 string libFullName = libNamePrefix + libName + "_" + libVersion + libNameSuffix;
                 libraryTargetFilePath = Path.Combine(libraryPath, libFullName);
             }
+
+            if (WindowsPlatform.Compiler == WindowsCompiler.VisualStudio2017)
+            {
+                libraryPath = getLibraryPath("win32", "vs2017");
+                string libFullName = libNamePrefix + libName + "_" + libVersion + libNameSuffix;
+                libraryTargetFilePath = Path.Combine(libraryPath, libFullName);
+            }
+
 
         }
         else if (Target.Platform == UnrealTargetPlatform.Android)
