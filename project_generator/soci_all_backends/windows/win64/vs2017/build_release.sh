@@ -11,3 +11,6 @@ popd
 
 cp -r ../../../../../intermediate/project/win64/vs2017/Release/lib/Release/ \
 	  ../../../../../libs/win64/vs2017
+
+cp -rf ../../../../../intermediate/project/win64/vs2017/Release/include/ \
+	../../../../../

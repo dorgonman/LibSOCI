@@ -10,3 +10,5 @@ popd
 
 cp -r ../../../../../intermediate/project/win64/vs2015/Debug/lib/Debug/ \
 	  ../../../../../libs/win64/vs2015
+cp -rf ../../../../../intermediate/project/win64/vs2015/Debug/include/ \
+	../../../../../
