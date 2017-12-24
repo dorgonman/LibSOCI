@@ -9,5 +9,5 @@ python Source/HorizonCMakeBuild/Main.py --config=${CONFIG_PATH}
 popd
 
 
-cp -r ../../../../../intermediate/project/win64/vs2015/Release/lib/Release/ \
-	  ../../../../../libs/win64/vs2015
+cp -r ../../../../../intermediate/project/win64/vs2017/Release/lib/Release/ \
+	  ../../../../../libs/win64/vs2017
