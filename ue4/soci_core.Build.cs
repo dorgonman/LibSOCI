@@ -34,8 +34,10 @@ using System.IO;
 public class soci_core : ModuleRules
 {
 
-    public soci_core(TargetInfo Target)
+   public soci_core(ReadOnlyTargetRules Target)
+        : base(Target)
     {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
         Type = ModuleType.External;
         checkExternalLibPath();
 
@@ -53,8 +55,6 @@ public class soci_core : ModuleRules
 
         // Enable C++ Exceptions for this module
         bEnableExceptions = true;
-        // eventually needed as well
-        UEBuildConfiguration.bForceEnableExceptions = true;
 
         //string AllArguments = Arguments + FileArguments + CompileEnvironment.Config.AdditionalArguments;
 
@@ -70,7 +70,7 @@ public class soci_core : ModuleRules
 
 
 
-    private bool AddStaticLibrary(TargetInfo Target)
+    private bool AddStaticLibrary(ReadOnlyTargetRules Target)
     {
         bool bSuccess = false;
 

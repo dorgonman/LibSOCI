@@ -35,8 +35,10 @@ using System.IO;
 public class soci_sqlite3 : ModuleRules
 {
 
-    public soci_sqlite3(TargetInfo Target)
+   public soci_sqlite3(ReadOnlyTargetRules Target)
+        : base(Target)
     {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
         Type = ModuleType.External;
         checkExternalLibPath();
 
@@ -66,8 +68,6 @@ public class soci_sqlite3 : ModuleRules
 
         // Enable C++ Exceptions for this module
         bEnableExceptions = true;
-        // eventually needed as well
-        UEBuildConfiguration.bForceEnableExceptions = true;
 
     }
 
@@ -81,7 +81,7 @@ public class soci_sqlite3 : ModuleRules
 
 
 
-    private bool AddStaticLibrary(TargetInfo Target)
+    private bool AddStaticLibrary(ReadOnlyTargetRules Target)
     {
         bool bSuccess = false;
 
