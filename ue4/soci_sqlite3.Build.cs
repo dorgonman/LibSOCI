@@ -102,6 +102,14 @@ public class soci_sqlite3 : ModuleRules
                 string libFullName = libNamePrefix + libName + "_" + libVersion + libNameSuffix;
                 libraryTargetFilePath = Path.Combine(libraryPath, libFullName);
             }
+
+            if (WindowsPlatform.Compiler == WindowsCompiler.VisualStudio2017)
+            {
+                //"libsoci_sqlite3_4_0.lib"
+                libraryPath = getLibraryPath("win64", "vs2017");
+                string libFullName = libNamePrefix + libName + "_" + libVersion + libNameSuffix;
+                libraryTargetFilePath = Path.Combine(libraryPath, libFullName);
+            }
         }
         else if (Target.Platform == UnrealTargetPlatform.Win32)
         {
@@ -114,6 +122,13 @@ public class soci_sqlite3 : ModuleRules
                 libraryTargetFilePath = Path.Combine(libraryPath, libFullName);
             }
 
+
+            if (WindowsPlatform.Compiler == WindowsCompiler.VisualStudio2017)
+            {
+                libraryPath = getLibraryPath("win32", "vs2017");
+                string libFullName = libNamePrefix + libName + "_" + libVersion + libNameSuffix;
+                libraryTargetFilePath = Path.Combine(libraryPath, libFullName);
+            }
         }
         else if (Target.Platform == UnrealTargetPlatform.Android)
         {
